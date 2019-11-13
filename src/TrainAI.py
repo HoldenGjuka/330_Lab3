@@ -21,9 +21,23 @@ def loadData():
 
 
 def write80and20(nums):
+    random.shuffle(nums)
+    #testing data
     file = open("20_test.txt", "w")
     file.write("#Play tennis|Outlook|Temperature|Humidity|Wind")
-    for i in nums:
+    nums20 = nums[0:int(len(nums)*0.2)]
+    for i in nums20:
+        file.write("\n")
+        length = len(i)
+        for j in range(length):
+            token = str(i[j]) + " "
+            file.write(token)
+    file.close()
+    #training data
+    file = open("80_train.txt", "w")
+    file.write("#Play tennis|Outlook|Temperature|Humidity|Wind")
+    nums80 = nums[int(len(nums)*0.2):]
+    for i in nums80:
         file.write("\n")
         length = len(i)
         for j in range(length):
@@ -32,19 +46,10 @@ def write80and20(nums):
     file.close()
 
 
-    # file = open("80_test.txt", "w")
-    # file.write("#Play tennis|Outlook|Temperature|Humidity|Wind")
-    #
-    # file.close()
-    pass
-
-
 def readInputFile(fileName):
     file = open(fileName, "r")
-    features = [[]]
-    output = [[]]
-    features.remove([])
-    output.remove([])
+    features = []
+    output = []
     i = 0
     for line in file:
         if i != 0:
@@ -54,16 +59,11 @@ def readInputFile(fileName):
             features.append(nums[1:4])
         i += 1
     output = np.array(output)
-    random.shuffle(output)
     data = np.array(features)
-    random.shuffle(features)
-    print(data)
-    print(output)
     return data, output
 
 
 nums = loadData()
-print(nums)
 write80and20(nums)
-# readInputFile("80_train.txt")
-# readInputFile("20_train.txt")
+trainingData = readInputFile("80_train.txt")
+testingData = readInputFile("20_test.txt")
