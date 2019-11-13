@@ -1,0 +1,30 @@
+
+
+iris dataset:
+
+iris.data vs iris.target
+
+[
+ [1,2,3,4],
+ [1,2,3,4]
+ [1,2,3,4]
+]
+
+slide 15
+
+convert num.py array from nested list to
+
+
+python
+data = [[1,2,3],[1,2,3]]
+import numpy as np
+dataNum = np.array(data)
+dataNum
+
+trainingdata = load text file, get features
+trainingdata80 VS target80
+
+
+testingdata20 VS target20
+
+pickle.dump command? for outputting the model or something I think
